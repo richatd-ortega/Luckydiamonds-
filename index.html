@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09090d">
+<meta name="description" content="LuckyDiamonds: juegos gratuitos, diversión y desafíos con fichas virtuales.">
+<title>LuckyDiamonds — Tu momento de suerte</title>
+<style>
+:root{--bg:#09090d;--panel:#14141c;--panel2:#1b1a22;--gold:#e8c56a;--gold2:#a77b2e;--muted:#a6a2ad;--white:#f8f5ed}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#332719 0%,#111017 38%,var(--bg) 75%);color:var(--white);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+header{position:sticky;top:0;z-index:5;background:#09090deF;backdrop-filter:blur(14px);border-bottom:1px solid #ffffff14}
+.nav{max-width:1120px;margin:auto;padding:15px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:1.5px;color:var(--gold);font-size:19px}.gem{font-size:25px;filter:drop-shadow(0 0 10px #e8c56a88)}
+nav{display:flex;gap:20px}nav a{color:#d6d0c4;text-decoration:none;font-size:13px}nav a:hover{color:var(--gold)}
+.balance{border:1px solid #b88c43;border-radius:30px;padding:8px 13px;color:var(--gold);font-size:12px;white-space:nowrap}
+main{max-width:1120px;margin:auto;padding:28px 22px 60px}
+.hero{position:relative;overflow:hidden;border:1px solid #b58a453d;border-radius:25px;padding:45px 32px;background:linear-gradient(110deg,#17151b 0%,#211a17 54%,#111019 100%);box-shadow:0 18px 60px #0008}
+.hero:after{content:"◆";position:absolute;right:8%;top:4%;font-size:190px;color:#e8c56a0c;transform:rotate(12deg)}
+.eyebrow{color:var(--gold);letter-spacing:3px;font-size:11px;font-weight:800}.hero h1{font-size:clamp(34px,6vw,60px);line-height:1.03;margin:14px 0;max-width:650px}.hero h1 span{color:var(--gold)}.hero p{color:#c4bdaf;max-width:520px;line-height:1.7;font-size:15px}
+.btn{border:0;border-radius:30px;background:linear-gradient(110deg,#f0d78e,#b98535);color:#17120a;font-weight:900;padding:13px 21px;cursor:pointer;box-shadow:0 7px 22px #c18c3d33}.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.note{font-size:11px;color:#a9a3a0;margin-top:15px}
+.ad{margin:24px 0;border:1px dashed #8c754b66;border-radius:14px;min-height:88px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;color:#8e8790;background:#ffffff04;font-size:12px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:35px 0 16px}.section-head h2{margin:0;font-size:23px}.section-head p{margin:5px 0 0;color:var(--muted);font-size:12px}
+.games{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.game{background:linear-gradient(145deg,#1d1b24,#111117);border:1px solid #ffffff12;border-radius:18px;padding:19px;min-height:190px;display:flex;flex-direction:column;align-items:flex-start}
+.game-icon{height:65px;width:65px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(145deg,#40311c,#211b18);font-size:34px;border:1px solid #d5ad5a55;margin-bottom:13px}
+.game h3{margin:0 0 5px;font-size:17px}.game p{margin:0 0 15px;color:var(--muted);font-size:12px;line-height:1.5}.game button{margin-top:auto;background:#26232a;border:1px solid #b88c4355;color:var(--gold);border-radius:25px;padding:9px 14px;cursor:pointer;font-weight:700}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:25px}.info article{background:#14131a;border:1px solid #ffffff10;border-radius:16px;padding:20px}.info h3{margin:0 0 8px;color:var(--gold);font-size:15px}.info p{margin:0;color:#aaa4ae;font-size:12px;line-height:1.7}
+footer{border-top:1px solid #ffffff12;text-align:center;color:#827d87;padding:25px 20px;font-size:11px;line-height:1.7}
+.modal{position:fixed;inset:0;background:#000b;display:none;place-items:center;padding:20px;z-index:10}.modal.show{display:grid}.dialog{width:min(420px,100%);background:#191720;border:1px solid #c49a50;border-radius:20px;padding:24px;text-align:center;box-shadow:0 20px 70px #000}.dialog h2{color:var(--gold)}.reels{font-size:48px;letter-spacing:8px;padding:18px;background:#0d0c12;border-radius:12px;margin:18px 0}.result{color:#e9d9b3;min-height:25px}.close{background:none;color:#c8c1b5;border:0;margin-top:12px;cursor:pointer}
+@media(max-width:700px){nav{display:none}.hero{padding:34px 22px}.hero:after{right:-30px;font-size:130px}.games{grid-template-columns:1fr}.game{min-height:0}.info{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <div class="brand"><span class="gem">◆</span> LUCKYDIAMONDS</div>
+  <nav><a href="#juegos">Juegos</a><a href="#como-funciona">Cómo funciona</a><a href="#anuncios">Publicidad</a></nav>
+  <div class="balance">💎 <span id="balance">1.000</span> fichas</div>
+</div></header>
+<main>
+<section class="hero">
+  <div class="eyebrow">GAMES · FUN · ENTERTAINMENT</div>
+  <h1>Tu momento de <span>suerte</span><br>empieza aquí.</h1>
+  <p>Explora juegos de demostración, prueba tu suerte y diviértete. Todo con fichas virtuales, sin depósitos y sin premios en dinero.</p>
+  <button class="btn" onclick="document.querySelector('#juegos').scrollIntoView({behavior:'smooth'})">EXPLORAR JUEGOS&nbsp; →</button>
+  <div class="note">Solo entretenimiento · No se apuesta dinero real</div>
+</section>
+<div class="ad" id="anuncios">ESPACIO PUBLICITARIO<br><small>Los anuncios aparecerán aquí cuando el sitio sea aprobado por una plataforma publicitaria.</small></div>
+<section id="juegos">
+  <div class="section-head"><div><h2>Elige tu juego</h2><p>Juega gratis con tus fichas de demostración.</p></div></div>
+  <div class="games">
+    <article class="game"><div class="game-icon">🎰</div><h3>Lucky Slots</h3><p>Gira los rodillos y descubre combinaciones divertidas.</p><button onclick="openGame('slots')">Jugar demostración</button></article>
+    <article class="game"><div class="game-icon">🎡</div><h3>Ruleta de colores</h3><p>Elige un color y mira dónde se detiene la ruleta.</p><button onclick="openGame('roulette')">Jugar demostración</button></article>
+    <article class="game"><div class="game-icon">💎</div><h3>Busca el diamante</h3><p>Elige una de tres cajas y encuentra el diamante oculto.</p><button onclick="openGame('diamond')">Jugar demostración</button></article>
+  </div>
+</section>
+<div class="ad">ESPACIO PUBLICITARIO<br><small>Contenido patrocinado claramente identificado</small></div>
+<section class="info" id="como-funciona">
+  <article><h3>💎 Fichas virtuales</h3><p>La experiencia usa puntos ficticios únicamente para jugar. No tienen valor monetario, no se compran y no se pueden retirar.</p></article>
+  <article><h3>✨ Diversión responsable</h3><p>LuckyDiamonds es un sitio de entretenimiento y demostración. No ofrece apuestas con dinero real ni promete ganancias.</p></article>
+</section>
+</main>
+<footer>© 2026 LuckyDiamonds · Sitio de entretenimiento de demostración.<br>Los espacios publicitarios se activarán únicamente después de cumplir las políticas y obtener aprobación del proveedor de anuncios.</footer>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="gameTitle">
+ <div class="dialog"><h2 id="gameTitle">Lucky Slots</h2><p id="gameDesc">Prueba el juego con fichas virtuales.</p><div class="reels" id="reels">💎 🍀 ⭐</div><div class="result" id="result">¡Buena suerte!</div><button class="btn" id="play" onclick="playGame()">JUGAR GRATIS</button><br><button class="close" onclick="closeGame()">Cerrar</button></div>
+</div>
+<script>
+let balance=1000,current='slots';
+const $=id=>document.getElementById(id);
+function openGame(type){current=type;$('modal').classList.add('show');$('result').textContent='¡Buena suerte!';$('play').disabled=false;
+ const names={slots:['Lucky Slots','Prueba una combinación de símbolos.'],roulette:['Ruleta de colores','La ruleta elegirá un color al azar.'],diamond:['Busca el diamante','Elige una caja para encontrar el diamante.']};
+ $('gameTitle').textContent=names[type][0];$('gameDesc').textContent=names[type][1];
+ $('reels').textContent=type==='slots'?'💎 🍀 ⭐':type==='roulette'?'🔴 ⚫ 🟡':'📦 📦 📦';}
+function closeGame(){$('modal').classList.remove('show')}
+function playGame(){if(balance<10){$('result').textContent='No tienes fichas suficientes para esta ronda.';return}
+ balance-=10;let win=Math.random()>.58;let symbols=['💎','🍀','⭐','7️⃣','🔔'];
+ if(current==='slots'){let a=symbols[Math.floor(Math.random()*symbols.length)],b=symbols[Math.floor(Math.random()*symbols.length)],c=symbols[Math.floor(Math.random()*symbols.length)];$('reels').textContent=a+' '+b+' '+c;win=a===b&&b===c}
+ if(current==='roulette'){let c=['🔴','⚫','🟡'][Math.floor(Math.random()*3)];$('reels').textContent='🎡 '+c+' 🎡'}
+ if(current==='diamond'){let n=Math.floor(Math.random()*3);$('reels').textContent=['📦','📦','📦'].map((x,i)=>i===n?'💎':x).join(' ')}
+ if(win){balance+=25;$('result').textContent='¡Buen resultado! Ganaste 25 fichas virtuales.'}else{$('result').textContent='Esta vez no salió. ¡Prueba otra ronda!'}
+ $('balance').textContent=balance.toLocaleString('es-CO');}
+$('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeGame()});
+</script>
+</body></html>
